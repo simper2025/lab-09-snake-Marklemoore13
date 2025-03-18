@@ -2,7 +2,8 @@
 
 GameRunner::GameRunner(double time)
 {
-    keypress = KeyCommand::NONE;
+    runTime = time;
+    keyPress = KeyCommand::NONE;
 }
 
 void GameRunner::runGame() {
@@ -15,14 +16,18 @@ void GameRunner::runGame() {
     int length = 5;
 
     //Loop to start drawing and playing.
-    //while (keypress != key_ESCAPE) {
+    while (keyPress != KeyCommand::QUIT) {
 
-    keyboard.keyPressed();
+    keyPress = keyboard.keyPressed();
+    if (keyPress == KeyCommand::QUIT)
+        break;
+    else
+        snake.setDirection(keyPress);
 
-    //currentTime = chrono::system_clock::now();
+    currentTime = chrono::system_clock::now();
 
     double elapsedTime = chrono::duration_cast<chrono::milliseconds>(currentTime - runTime).count();
-    if (elapsedTime > 0.3 * 1000) {
+    if (elapsedTime > (runTime * 1000) {
         runTime = chrono::system_clock::now();
 
         //Most of your game logic goes here.

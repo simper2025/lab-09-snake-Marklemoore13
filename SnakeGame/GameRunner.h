@@ -16,10 +16,11 @@ using namespace std;
 class GameRunner
 {
 private:
-	KeyCommand keypress;
+	KeyCommand keyPress;
 	Keyboard keyboard;
 	Snake snake;
 	Mouse mouse;
+	double runTime;
 public:
 	GameRunner(double time);
 	void runGame();
