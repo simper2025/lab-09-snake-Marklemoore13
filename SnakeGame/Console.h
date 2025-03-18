@@ -1,4 +1,8 @@
 #pragma once
+
+#include <Windows.h>
+#include "Point.h"
+
 class Console
 {
 private:
