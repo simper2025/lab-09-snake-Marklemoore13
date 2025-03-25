@@ -6,10 +6,12 @@ Snake::Snake(char color1, char color2){
 	bodyColor = color2;
 	direction = { 0,0 };
 	head = { 0,1 };
+	length = 0;
 }
 
 int Snake::getLength()
 {
+	length++;
 	return length;
 }
 

@@ -9,7 +9,7 @@ class Snake
 private:
 	point direction;
 	point head;
-	const int length = 19;
+	int length;
 	std::vector<point> tail;
 	char headColor;
 	char bodyColor;

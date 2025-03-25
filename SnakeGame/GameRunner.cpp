@@ -35,11 +35,20 @@ void GameRunner::runGame() {
             runTime = chrono::system_clock::now();
 
             //Most of your game logic goes here.
+            keyPress = keyboard.keyPressed();
+            if (keyPress == KeyCommand::QUIT)
+                break;
+            else
+                snake.setDirection(keyPress);
+            
             snake.draw();
+            if (snake.getHead().x > 20 || snake.getHead().x < 0 || snake.getHead().y > 20 || snake.getHead().y < 0)
+                break;
             if (snake.getHead().x == mouse.getPosition().x && snake.getHead().y == mouse.getPosition().y) {
                 snake.setTail();
                 mouse.draw();
             }
+            Console::txtWrite({ 0, 21 }, 254, to_string(snake.getLength()));
 
             //Console::txtPlot(playerloc, 31);
             //_cprintf("Length: %i", length);
