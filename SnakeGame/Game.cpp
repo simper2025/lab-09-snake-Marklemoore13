@@ -9,10 +9,10 @@ using namespace std;
 int main() {
 
     //Uncomment the next four lines to see console color options 0-255
-    //for (int i = 0; i < 255; i++) {
-    //    setcolor(i);
-    //    _cprintf("Color option: %i. Hello, world.\n", i);
-    //}
+    /*for (int i = 0; i < 16; i++) {
+        int c = i * 16;
+        Console::txtWrite({ 0,i }, c, "color" + to_string(c));
+    }*/
 
     GameRunner game(0.3);
     game.runGame();

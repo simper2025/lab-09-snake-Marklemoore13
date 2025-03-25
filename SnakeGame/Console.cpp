@@ -24,3 +24,10 @@ void Console::txtPlot(point item, unsigned char Color)
     gotoxy(item.x * 2, item.y);
     _cprintf("  ");
 }
+
+void Console::txtWrite(point item, unsigned char Color, std::string textInput)
+{
+    setcolor(Color);
+    gotoxy(item.x, item.y);
+    _cprintf("%s", textInput.c_str());
+}

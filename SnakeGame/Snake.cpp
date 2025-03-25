@@ -1,4 +1,17 @@
 #include "Snake.h"
+#include "Console.h"
+
+Snake::Snake(char color1, char color2){
+	headColor = color1;
+	bodyColor = color2;
+	direction = { 0,0 };
+	head = { 0,1 };
+}
+
+int Snake::getLength()
+{
+	return length;
+}
 
 void Snake::setDirection(KeyCommand keyPress)
 {
@@ -18,4 +31,25 @@ void Snake::setDirection(KeyCommand keyPress)
 	default:
 		break;
 	}
+}
+
+void Snake::setTail()
+{
+	tail.push_back(head);
+	if (tail.size() > length)
+		tail.erase(tail.begin());
+}
+
+void Snake::draw()
+{
+	head.x += direction.x;
+	head.y += direction.y;
+	Console::txtPlot(head, 70);
+	for (int i = tail.size()-1 ; i >= 0; i--)
+		Console::txtPlot(tail[i], 71);
+}
+
+point Snake::getHead()
+{
+	return head;
 }

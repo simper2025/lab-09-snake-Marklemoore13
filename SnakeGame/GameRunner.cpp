@@ -1,9 +1,11 @@
 #include "GameRunner.h"
 
-GameRunner::GameRunner(double time)
+GameRunner::GameRunner(double time):snake(16, 48)
 {
     runTime = time;
-    keyPress = KeyCommand::NONE;
+    keyPress = keyboard.keyPressed();
+    mouse.draw();
+    snake.draw();
 }
 
 void GameRunner::runGame() {
@@ -13,31 +15,38 @@ void GameRunner::runGame() {
     runTime = std::chrono::system_clock::now();
     Sleep(300);
 
-    int length = 5;
-
     //Loop to start drawing and playing.
     while (keyPress != KeyCommand::QUIT) {
 
-    keyPress = keyboard.keyPressed();
-    if (keyPress == KeyCommand::QUIT)
-        break;
-    else
-        snake.setDirection(keyPress);
+        for (int i = 0; i <= 20; i++)
+            for (int j = 0; j <= 20; j++)
+                Console::txtPlot({ i, j }, 32);
 
-    currentTime = chrono::system_clock::now();
+        keyPress = keyboard.keyPressed();
+        if (keyPress == KeyCommand::QUIT)
+            break;
+        else
+            snake.setDirection(keyPress);
 
-    double elapsedTime = chrono::duration_cast<chrono::milliseconds>(currentTime - runTime).count();
-    if (elapsedTime > (runTime * 1000) {
-        runTime = chrono::system_clock::now();
+        currentTime = chrono::system_clock::now();
 
-        //Most of your game logic goes here.
+        double elapsedTime = chrono::duration_cast<chrono::milliseconds>(currentTime - runTime).count();
+        if (elapsedTime > (.3 * 1000)) {
+            runTime = chrono::system_clock::now();
 
-        //Console::txtPlot(playerloc, 31);
-        //_cprintf("Length: %i", length);
+            //Most of your game logic goes here.
+            snake.draw();
+            if (snake.getHead().x == mouse.getPosition().x && snake.getHead().y == mouse.getPosition().y) {
+                snake.setTail();
+                mouse.draw();
+            }
+
+            //Console::txtPlot(playerloc, 31);
+            //_cprintf("Length: %i", length);
 
 
+        }
+
+        Sleep(10);
     }
-
-    Sleep(10);
-    //}
 }

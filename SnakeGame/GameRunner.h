@@ -18,9 +18,9 @@ class GameRunner
 private:
 	KeyCommand keyPress;
 	Keyboard keyboard;
+	double runTime;
 	Snake snake;
 	Mouse mouse;
-	double runTime;
 public:
 	GameRunner(double time);
 	void runGame();
