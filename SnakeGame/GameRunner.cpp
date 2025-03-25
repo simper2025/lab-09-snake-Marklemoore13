@@ -21,6 +21,8 @@ void GameRunner::runGame() {
         for (int i = 0; i <= 20; i++)
             for (int j = 0; j <= 20; j++)
                 Console::txtPlot({ i, j }, 32);
+        mouse.draw();
+        snake.draw();
 
         keyPress = keyboard.keyPressed();
         if (keyPress == KeyCommand::QUIT)
@@ -35,7 +37,7 @@ void GameRunner::runGame() {
             runTime = chrono::system_clock::now();
 
             //Most of your game logic goes here.
-            keyPress = keyboard.keyPressed();
+            /*keyPress = keyboard.keyPressed();
             if (keyPress == KeyCommand::QUIT)
                 break;
             else
@@ -48,7 +50,7 @@ void GameRunner::runGame() {
                 snake.setTail();
                 mouse.draw();
             }
-            Console::txtWrite({ 0, 21 }, 254, to_string(snake.getLength()));
+            Console::txtWrite({ 0, 21 }, 254, to_string(snake.getLength()));*/
 
             //Console::txtPlot(playerloc, 31);
             //_cprintf("Length: %i", length);
